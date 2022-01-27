@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <div class="all-dogs">
+        <a th:href="@{/lista}">
+            <h2>Zobacz naszych podopiecznych:</h2>
+        </a>
+    </div>
+    <div class="categories">
+        <div class="row">
+            <a class="column" id="puppy"  th:href="@{/lista?sort=puppy}" >
+                <p class="column-text">Szczeniaki</p>
+            </a>
+            <a class="column" id="small"  th:href="@{/lista?sort=small}" >
+                <p class="column-text">Małe psy</p>
+            </a>
+        </div>
+        <div class="row">
+            <a class="column" id="medium"  th:href="@{/lista?sort=medium}" >
+                <p class="column-text">Średnie psy</p>
+            </a>
+            <a class="column" id="large"  th:href="@{/lista?sort=large}" >
+                <p class="column-text">Duże psy</p>
+            </a>
+        </div>
+    </div>
+    <div id="help" class="dogs-needing-help">
+        <h2>Wspomóż zapomniane psiaki:</h2>
+        <small style="color: darkred">// Z oczywistych przyczyn kliknięcie przycisku "pomagam" nie przekierowuje do płatności.</small>
+        <small style="color: darkred">// Działa on jak przycisk "lubię". Tabela poniżej przedstawia pieski z najmniejszą ilością takich "polubień".</small>
+        <br>
+        <div th:replace="fragments :: list"></div>
+    </div>
+</div>
+</body>
+</html>

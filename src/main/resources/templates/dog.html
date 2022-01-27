@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <div id="short-desc">
+        <div id="image">
+            <p>przykladowe zdjęcie</p>
+        </div>
+        <div id="data">
+            <h2 th:text="${dog.name}"></h2>
+            <a th:href="|/usun?id=${dog.id}|" ><u>Usuń </u></a>
+            <a th:href="|/edytuj?id=${dog.id}|" ><u>Edytuj</u></a>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" th:text="|Wiek: ${dog.age} lat|"></li>
+                <li class="list-group-item" th:text="|Płeć: ${dog.sex.description}|"></li>
+                <li class="list-group-item" th:text="|Waga: ${dog.weight} kg|"></li>
+            </ul>
+            <p th:text="|W sprawie adopcji prosimy o kontakt z ${dog.caretaker.name} nr. tel: ${'+48'} ${dog.caretaker.telNumber}|"></p>
+        </div>
+    </div>
+    <div id="long-desc">
+        <p th:text="${dog.description}"></p>
+    </div>
+
+</div>
+</body>
+</html>

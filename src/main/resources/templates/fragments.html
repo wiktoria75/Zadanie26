@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Psitułek</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+
+<div th:fragment="header">
+
+    <div class="header">
+        <div class="header-text">
+            <a href="/">
+                <h2>Psitułek</h2>
+            </a>
+            <a href="/#">
+                <p>Przekaż 1% podatku</p>
+            </a>
+        </div>
+        <div class="bar">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" th:href="@{/}">Strona główna</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/lista}">Podopieczni</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/opiekunowie}">Opiekunowie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/edytuj}">Dodaj psiaka</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#">O nas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/#">Kontakt</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>
+<div id="list" th:fragment="list">
+    <table id="table" class="table">
+        <thead>
+        <tr>
+            <th scope="col">Imię</th>
+            <th scope="col">  </th>
+            <th scope="col">Wiek</th>
+            <th scope="col">Płeć</th>
+            <th scope="col">Waga</th>
+            <th scope="col">Opiekun</th>
+            <th scope="col">Liczba pomagających</th>
+            <th scope="col">Pomagaj</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="dog:${dogs}">
+            <td th:text="${dog.name}"></td>
+            <td>
+                <a th:href="|/pies?id=${dog.id}|">(Poznaj mnie!)</a>
+            </td>
+            <td th:text="|${dog.age} lat|"></td>
+            <td th:text="${dog.sex.description}"></td>
+            <td th:text="|${dog.weight} kg|"></td>
+            <td th:text="${dog.caretaker.name}"></td>
+            <td th:text="|${dog.helpCount} pomagających|"></td>
+            <th>
+                <a th:href="|/pomagaj?id=${dog.id}|">Pomagam</a>
+            </th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
