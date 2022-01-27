@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+<div class="content">
+    <div id="title">
+        <div th:if="${dog.name == null}">
+            <h2>Dodaj nowego psiaka</h2>
+        </div>
+        <div th:if="${dog.name != null}">
+            <h2>Edytuj dane psiaka</h2>
+        </div>
+        <br>
+    </div>
+    <div id="form">
+        <form method="post" th:action="@{/zapisz}" th:object="${dog}">
+            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{helpCount}">
+            <div class="form-group">
+                <label for="name">Imię psa:</label>
+                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="np. Kajtek">
+            </div>
+            <div class="form-group">
+                <label for="sex">Płeć:</label>
+                <select th:field="*{sex}" class="form-control" id="sex">
+                    <option th:value="${sex.name}" th:each="sex:${sexes}" th:text="${sex.description}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="age">Wiek:</label>
+                <input type="number" th:field="*{age}" class="form-control" id="age">
+            </div>
+            <div class="form-group">
+                <label for="weight">Waga(kg) :</label>
+                <input type="number" th:field="*{weight}" class="form-control" id="weight">
+            </div>
+            <div class="form-group">
+                <label for="caretaker">Opiekun:</label>
+                <select th:field="*{caretaker}" multiple class="form-control" id="caretaker">
+                    <option th:value="${caretaker.id}" th:each="caretaker:${caretakers}" th:text="${caretaker.name}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="description">Opis psiaka:</label>
+                <textarea th:field="*{description}" class="form-control" id="description" rows="6"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Zapisz</button>
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>

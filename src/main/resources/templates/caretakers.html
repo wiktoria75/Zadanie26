@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: header"></div>
+
+<div class="content">
+    <h2>Opiekunowie schroniska:</h2>
+    <br>
+    <div id="caretakers">
+        <div id="caretaker-info" th:each="caretaker:${caretakers}" >
+            <h3 th:text="${caretaker.name}"></h3>
+            <p th:text="|Dostępny/a pod numerem tel. ${caretaker.telNumber}|"></p>
+            <a th:href="|/lista?caretakerId=${caretaker.id}|">Zobacz psiaki którymi zajmuje się ten opiekun!</a>
+            <br>
+            <br>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
